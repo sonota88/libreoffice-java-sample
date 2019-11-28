@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>libo-sample-g</groupId>
+  <artifactId>libo-sample-a</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>libo-sample-n</name>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>unoil-g</groupId>
+      <artifactId>unoil-a</artifactId>
+      <version>0.0.1</version>
+      <scope>system</scope>
+      <systemPath>/usr/share/libreoffice/program/classes/unoil.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>ridl-g</groupId>
+      <artifactId>ridl-a</artifactId>
+      <version>0.0.1</version>
+      <scope>system</scope>
+      <systemPath>/usr/lib/libreoffice/program/classes/ridl.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>juh-g</groupId>
+      <artifactId>juh-a</artifactId>
+      <version>0.0.1</version>
+      <scope>system</scope>
+      <systemPath>/usr/lib/libreoffice/program/classes/juh.jar</systemPath>
+    </dependency>
+
+  </dependencies>
+
+</project>
