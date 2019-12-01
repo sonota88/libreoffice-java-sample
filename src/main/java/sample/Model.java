@@ -1,7 +1,9 @@
 package sample;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import com.sun.star.beans.PropertyValue;
 import com.sun.star.comp.helper.Bootstrap;
@@ -39,12 +41,45 @@ public class Model {
         // -------------
         
         List<Sheet> sheets = doc.getSheets();
-        Sheet sh0 = sheets.get(0);
+        for (int si=0; si < sheets.size(); si++) {
+            Sheet sheet = sheets.get(si);
+            System.out.println("----------------");
+            System.out.println(
+                    String.format("sheets[%d] (%s)", si, sheet.getName())
+                    );
+        }
 
-        System.out.println(sh0.get(0, 0));
-        System.out.println(sh0.get(1, 0));
-        System.out.println(sh0.get(0, 1));
-        System.out.println(sh0.get(1, 1));
+        System.out.println("----------------");
+        // 名前でシートを取得
+        Sheet sheet = doc.getSheetByName("Sheet1");
+        System.out.println("(1, 1) => " + sheet.get(1, 1));
+        sheet.set(1, 1, "(1, 1) " + new Date());
+        System.out.println("(1, 1) => " + sheet.get(1, 1));
+
+        System.out.println("----------------");
+        sheet.set(1, 2, "123");
+        sheet.set(1, 3, "12.34");
+
+        // 整数として取得
+        System.out.println("getInt   => " + sheet.getInt(1, 2));
+        // 浮動小数として取得
+        System.out.println("getFloat => " + sheet.getDouble(1, 3));
+
+        System.out.println("----------------");
+        String str = sheet.get(1, 4);
+        int count;
+        if (Objects.equals(str, "")) {
+            count = 0;
+        } else {
+            count = sheet.getInt(1, 4);
+        }
+        System.out.println(count);
+
+        sheet.set(1, 4, String.valueOf(count + 1));
+        System.out.println("count => " + sheet.get(1, 4));
+
+        // 上書き保存
+        doc.save();
 
         doc.close();
     }

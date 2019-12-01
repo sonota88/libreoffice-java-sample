@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sun.star.container.XIndexAccess;
+import com.sun.star.frame.XStorable;
+import com.sun.star.io.IOException;
 import com.sun.star.lang.IndexOutOfBoundsException;
 import com.sun.star.lang.WrappedTargetException;
 import com.sun.star.lang.XComponent;
@@ -53,8 +55,25 @@ public class CalcDocument {
 		} catch (IndexOutOfBoundsException | WrappedTargetException e) {
 			throw new RuntimeException(e);
 		}
-
 	}
+
+    public Sheet getSheetByName(String name) {
+        XSpreadsheets sheets = this.doc.getSheets();
+        String[] sheetNames = sheets.getElementNames();
+        String sheetName = null;
+        Integer targetIndex = null;
+
+        for (int i = 0; i < sheetNames.length; i++) {
+            sheetName = sheetNames[i];
+            if (sheetName.equals(name)) {
+                targetIndex = i;
+                break;
+            }
+        }
+
+        XSpreadsheet sheet = this.getSheetByIndex(targetIndex);
+        return new Sheet(sheet, sheetName);
+    }
 
 	public void close() {
         XCloseable closable = UnoRuntime.queryInterface(
@@ -67,5 +86,14 @@ public class CalcDocument {
             throw new RuntimeException(e);
         }
 	}
+
+    public void save() {
+        XStorable storable = UnoRuntime.queryInterface(XStorable.class, this.component);
+        try {
+            storable.store();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

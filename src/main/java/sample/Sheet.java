@@ -8,7 +8,6 @@ public class Sheet {
 
 	private XSpreadsheet sheet;
 
-	@SuppressWarnings("unused")
 	private String name;
 
 	public Sheet(XSpreadsheet sheet, String name) {
@@ -27,5 +26,43 @@ public class Sheet {
 
 		return cell.getFormula().toString();
 	}
+
+    public Integer getInt(int ci, int ri) {
+        XCell cell;
+
+        try {
+            cell = this.sheet.getCellByPosition(ci, ri);
+        } catch (IndexOutOfBoundsException e) {
+            throw new RuntimeException(e);
+        }
+
+        return Integer.valueOf(cell.getFormula());
+    }
+
+    public Double getDouble(int ci, int ri) {
+        XCell cell;
+
+        try {
+            cell = this.sheet.getCellByPosition(ci, ri);
+        } catch (IndexOutOfBoundsException e) {
+            throw new RuntimeException(e);
+        }
+
+        return Double.valueOf(cell.getFormula());
+    }
+
+    public void set(int ci, int ri, String val) {
+        XCell cell;
+        try {
+            cell = this.sheet.getCellByPosition(ci, ri);
+        } catch (IndexOutOfBoundsException e) {
+            throw new RuntimeException(e);
+        }
+        cell.setFormula(val);
+    }
+
+    public String getName() {
+        return this.name;
+    }
 
 }
