@@ -4,3 +4,8 @@
 /.project
 /.settings/
 # .classpath
+
+# Maven Wrapper
+/.mvn/wrapper
+/mvnw
+/mvnw.cmd

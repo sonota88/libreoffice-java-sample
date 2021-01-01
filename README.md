@@ -1,3 +1,7 @@
+セットアップ
+
+    ./build.sh setup
+
 Docker イメージをビルド
 
     ./build.sh docker-image
