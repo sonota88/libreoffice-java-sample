@@ -1,8 +1,14 @@
 package sample;
 
 import com.sun.star.lang.IndexOutOfBoundsException;
+import com.sun.star.sheet.XCellRangeAddressable;
+import com.sun.star.sheet.XSheetCellCursor;
 import com.sun.star.sheet.XSpreadsheet;
+import com.sun.star.sheet.XUsedAreaCursor;
+import com.sun.star.table.CellRangeAddress;
 import com.sun.star.table.XCell;
+import com.sun.star.table.XCellRange;
+import com.sun.star.uno.UnoRuntime;
 
 public class Sheet {
 
@@ -63,6 +69,46 @@ public class Sheet {
 
     public String getName() {
         return this.name;
+    }
+
+    private XCellRange getUsedCellRange() {
+        XSheetCellCursor cursor = this.sheet.createCursor();
+
+        XUsedAreaCursor usedAreaCursor = UnoRuntime.queryInterface(
+                com.sun.star.sheet.XUsedAreaCursor.class,
+                cursor
+                );
+
+        usedAreaCursor.gotoEndOfUsedArea(false);
+
+        XCellRange usedRange = UnoRuntime.queryInterface(
+                com.sun.star.table.XCellRange.class,
+                usedAreaCursor
+                );
+
+        return usedRange;
+    }
+
+    public int getUsedRowIndexMax() {
+        XCellRange usedCellRange = getUsedCellRange();
+
+        XCellRangeAddressable usedCellRangeAddressable = UnoRuntime.queryInterface(
+                com.sun.star.sheet.XCellRangeAddressable.class,
+                usedCellRange
+                );
+        CellRangeAddress cellRangeAddress = usedCellRangeAddressable.getRangeAddress();
+        return cellRangeAddress.EndRow;
+    }
+
+    public int getUsedColumnIndexMax() {
+        XCellRange usedCellRange = getUsedCellRange();
+
+        XCellRangeAddressable usedCellRangeAddressable = UnoRuntime.queryInterface(
+                com.sun.star.sheet.XCellRangeAddressable.class,
+                usedCellRange
+                );
+        CellRangeAddress cellRangeAddress = usedCellRangeAddressable.getRangeAddress();
+        return cellRangeAddress.EndColumn;
     }
 
 }

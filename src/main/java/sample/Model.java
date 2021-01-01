@@ -57,6 +57,11 @@ public class Model {
         System.out.println("(1, 1) => " + sheet.get(1, 1));
 
         System.out.println("----------------");
+        // 行インデックス・列インデックスの最大値
+        System.out.println("Sheet1 row index max: " + sheet.getUsedRowIndexMax());
+        System.out.println("Sheet1 column index max: " + sheet.getUsedColumnIndexMax());
+
+        System.out.println("----------------");
         sheet.set(1, 2, "123");
         sheet.set(1, 3, "12.34");
 
