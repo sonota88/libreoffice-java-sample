@@ -1,10 +1,14 @@
+JavaでLibreOffice Calcのfodsファイルを読み書きするサンプル 2021 - memo88  
+https://memo88.hatenablog.com/entry/2021/01/01/155345
+
+JavaでLibreOffice Calcのfodsファイルを読み書きするサンプル 2019 - memo88  
+https://memo88.hatenablog.com/entry/2019/12/02/070925
+
+----
+
 セットアップ
 
     ./build.sh setup
-
-Docker イメージをビルド
-
-    ./build.sh docker-image
 
 パッケージ（jar）作成
 
@@ -13,6 +17,10 @@ Docker イメージをビルド
 ホストで実行
 
     ./run.sh
+
+Docker イメージをビルド
+
+    ./build.sh docker-image
 
 Docker コンテナ内で実行
 
