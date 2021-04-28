@@ -19,19 +19,19 @@ import com.sun.star.sheet.XSpreadsheets;
 
 public class CalcDocument {
 
-	private XComponent component;
-	private XSpreadsheetDocument doc;
+    private XComponent component;
+    private XSpreadsheetDocument doc;
 
-	public CalcDocument(XComponent component) {
-		this.component = component;
+    public CalcDocument(XComponent component) {
+        this.component = component;
 
         this.doc = UnoRuntime.queryInterface(
-        		XSpreadsheetDocument.class, this.component
-        		);
-	}
+                XSpreadsheetDocument.class, this.component
+                );
+    }
 
-	public List<Sheet> getSheets() {
-		List<Sheet> sheets = new ArrayList<>();
+    public List<Sheet> getSheets() {
+        List<Sheet> sheets = new ArrayList<>();
         String[] sheetNames = this.doc.getSheets().getElementNames();
         String sheetName;
 
@@ -42,20 +42,20 @@ public class CalcDocument {
         }
 
         return sheets;
-	}
+    }
 
-	private XSpreadsheet getSheetByIndex(int i) {
-		XSpreadsheets sheets = this.doc.getSheets();
+    private XSpreadsheet getSheetByIndex(int i) {
+        XSpreadsheets sheets = this.doc.getSheets();
 
-		XIndexAccess indexAccess = UnoRuntime.queryInterface(XIndexAccess.class, sheets);
+        XIndexAccess indexAccess = UnoRuntime.queryInterface(XIndexAccess.class, sheets);
 
-		try {
-			return UnoRuntime.queryInterface(
-					XSpreadsheet.class, indexAccess.getByIndex(i));
-		} catch (IndexOutOfBoundsException | WrappedTargetException e) {
-			throw new RuntimeException(e);
-		}
-	}
+        try {
+            return UnoRuntime.queryInterface(
+                    XSpreadsheet.class, indexAccess.getByIndex(i));
+        } catch (IndexOutOfBoundsException | WrappedTargetException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public Sheet getSheetByName(String name) {
         XSpreadsheets sheets = this.doc.getSheets();
@@ -75,7 +75,7 @@ public class CalcDocument {
         return new Sheet(sheet, sheetName);
     }
 
-	public void close() {
+    public void close() {
         XCloseable closable = UnoRuntime.queryInterface(
                 XCloseable.class, this.component
                 );
@@ -85,7 +85,7 @@ public class CalcDocument {
         } catch (CloseVetoException e) {
             throw new RuntimeException(e);
         }
-	}
+    }
 
     public void save() {
         XStorable storable = UnoRuntime.queryInterface(XStorable.class, this.component);

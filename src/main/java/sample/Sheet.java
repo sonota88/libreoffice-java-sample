@@ -12,26 +12,26 @@ import com.sun.star.uno.UnoRuntime;
 
 public class Sheet {
 
-	private XSpreadsheet sheet;
+    private XSpreadsheet sheet;
 
-	private String name;
+    private String name;
 
-	public Sheet(XSpreadsheet sheet, String name) {
-	    this.sheet = sheet;
-	    this.name = name;
-	}
+    public Sheet(XSpreadsheet sheet, String name) {
+        this.sheet = sheet;
+        this.name = name;
+    }
 
-	public String get(int ci, int ri) {
+    public String get(int ci, int ri) {
         XCell cell;
 
         try {
-			cell = this.sheet.getCellByPosition(ci, ri);
-		} catch (IndexOutOfBoundsException e) {
-			throw new RuntimeException(e);
-		}
+            cell = this.sheet.getCellByPosition(ci, ri);
+        } catch (IndexOutOfBoundsException e) {
+            throw new RuntimeException(e);
+        }
 
-		return cell.getFormula().toString();
-	}
+        return cell.getFormula().toString();
+    }
 
     public Integer getInt(int ci, int ri) {
         XCell cell;

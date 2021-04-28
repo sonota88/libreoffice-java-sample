@@ -16,19 +16,19 @@ import com.sun.star.uno.XComponentContext;
 public class Model {
 
     public void main(String path) throws Exception {
-    	XComponentContext context = Bootstrap.bootstrap();
-    	XMultiComponentFactory mcf = context.getServiceManager();
+        XComponentContext context = Bootstrap.bootstrap();
+        XMultiComponentFactory mcf = context.getServiceManager();
 
-    	Object desktop = mcf.createInstanceWithContext(
+        Object desktop = mcf.createInstanceWithContext(
                 "com.sun.star.frame.Desktop", context
                 );
 
-    	XComponentLoader componentLoader = UnoRuntime.queryInterface(XComponentLoader.class, desktop);
+        XComponentLoader componentLoader = UnoRuntime.queryInterface(XComponentLoader.class, desktop);
 
         // GUI表示なし
         PropertyValue[] args = {
-        		arg("Hidden", true)
-        		};
+                arg("Hidden", true)
+                };
 
         String fileUrl = "file://" + new File(path).getCanonicalPath();
         
@@ -90,7 +90,7 @@ public class Model {
     }
 
     PropertyValue arg(String name, Object value) {
-    	PropertyValue arg = new PropertyValue();
+        PropertyValue arg = new PropertyValue();
         arg.Name = name;
         arg.Value = value;
         return arg;
