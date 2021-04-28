@@ -30,7 +30,9 @@ public class Sheet {
             throw new RuntimeException(e);
         }
 
-        return cell.getFormula().toString();
+        String formula = cell.getFormula().toString();
+        return unescapeFormula(formula);
+    }
 
     static String unescapeFormula(String formula) {
         if (formula.startsWith("'")) {
