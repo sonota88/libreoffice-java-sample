@@ -31,6 +31,13 @@ public class Sheet {
         }
 
         return cell.getFormula().toString();
+
+    static String unescapeFormula(String formula) {
+        if (formula.startsWith("'")) {
+            return formula.substring(1);
+        } else {
+            return formula;
+        }
     }
 
     public Integer getInt(int ci, int ri) {
