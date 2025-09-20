@@ -31,7 +31,7 @@ public class Model {
                 };
 
         String fileUrl = "file://" + new File(path).getCanonicalPath();
-        
+
         XComponent component = componentLoader.loadComponentFromURL(
             fileUrl, "_blank", 0, args
             );
@@ -39,7 +39,7 @@ public class Model {
         CalcDocument doc = new CalcDocument(component);
 
         // -------------
-        
+
         List<Sheet> sheets = doc.getSheets();
         for (int si=0; si < sheets.size(); si++) {
             Sheet sheet = sheets.get(si);
