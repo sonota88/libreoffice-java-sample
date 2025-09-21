@@ -4,7 +4,7 @@ MVN_CMD=./mvnw
 
 setup() {
   echo "Install Maven Wrapper"
-  mvn -N io.takari:maven:0.7.7:wrapper -Dmaven=3.6.3
+  mvn wrapper:wrapper -Dmaven=3.9.11
 }
 
 case "$1" in
@@ -12,9 +12,10 @@ case "$1" in
     setup
     ;;
   docker-image)
-    docker build -t libo-sample:test .
+    docker build -t libo-sample:ubuntu2404_lo24 .
     ;;
   package)
+    export MAVEN_OPTS="-Dmaven.repo.local=${PWD}/maven_repo_local"
     $MVN_CMD clean
     $MVN_CMD package -Dmaven.test.skip=true
     ;;

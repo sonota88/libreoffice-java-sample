@@ -22,9 +22,16 @@ Docker イメージをビルド
 
     ./build.sh docker-image
 
+Docker コンテナ内でビルド
+
+    docker run --rm \
+      -v ${PWD}:/root/work \
+      libo-sample:ubuntu2404_lo24 \
+      bash build.sh package
+
 Docker コンテナ内で実行
 
     docker run --rm \
       -v ${PWD}:/root/work \
-      libo-sample:test \
-      /root/work/run.sh
+      libo-sample:ubuntu2404_lo24 \
+      bash run.sh

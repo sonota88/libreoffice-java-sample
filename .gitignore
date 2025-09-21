@@ -9,3 +9,9 @@
 /.mvn/wrapper
 /mvnw
 /mvnw.cmd
+
+# Maven
+/maven_repo_local/
+
+# Emacs
+.#*
