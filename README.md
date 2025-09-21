@@ -1,7 +1,7 @@
-JavaでLibreOffice Calcのfodsファイルを読み書きするサンプル 2021 - memo88  
+JavaでLibreOffice Calcのfodsファイルを読み書きするサンプル 2021  
 https://memo88.hatenablog.com/entry/2021/01/01/155345
 
-JavaでLibreOffice Calcのfodsファイルを読み書きするサンプル 2019 - memo88  
+JavaでLibreOffice Calcのfodsファイルを読み書きするサンプル 2019  
 https://memo88.hatenablog.com/entry/2019/12/02/070925
 
 ----
